@@ -6,6 +6,8 @@ import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -32,6 +34,12 @@ public class MainActivity extends AppCompatActivity {
     ListView listView;
     String[] items;
 
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +48,14 @@ public class MainActivity extends AppCompatActivity {
         listView = findViewById(R.id.listViewSong);
 
         runtimePermission();
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) { switch(item.getItemId()) {
+        case R.id.like:
+            //add the function to perform here
+            return(true);
+    }
+        return(super.onOptionsItemSelected(item));
     }
 
     public void runtimePermission() {

@@ -8,6 +8,7 @@ import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -51,7 +52,7 @@ public class PlayerActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         //set back to home button
-        if (item.getItemId() == android.R.id.home) {onBackPressed();}
+            if (item.getItemId() == android.R.id.home) {onBackPressed();}
         return super.onOptionsItemSelected(item);
     }
 
@@ -209,6 +210,9 @@ public class PlayerActivity extends AppCompatActivity {
         //get current volume
         int curVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
 
+        volumebar.getProgressDrawable().setColorFilter(getResources().getColor(R.color.seekLine), PorterDuff.Mode.MULTIPLY);
+        volumebar.getThumb().setColorFilter(getResources().getColor(R.color.thumbseek), PorterDuff.Mode.SRC_IN);
+
         volumebar.setMax(maxVolume);
         volumebar.setProgress(curVolume);
         volumebar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -230,6 +234,9 @@ public class PlayerActivity extends AppCompatActivity {
         });
 
         //------------- song time seek bar ----------------------------
+        //set seekbar color
+        mSeekBar.getProgressDrawable().setColorFilter(getResources().getColor(R.color.seekLine), PorterDuff.Mode.MULTIPLY);
+        mSeekBar.getThumb().setColorFilter(getResources().getColor(R.color.thumbseek), PorterDuff.Mode.SRC_IN);
         mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
