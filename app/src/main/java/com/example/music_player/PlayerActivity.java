@@ -3,6 +3,8 @@ package com.example.music_player;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +15,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -70,7 +73,7 @@ public class PlayerActivity extends AppCompatActivity {
         repeatIcon = findViewById(R.id.btnrepeat);
         shuffleIcon = findViewById(R.id.btnshuf);
 
-//        volumebar = findViewById(R.id.volumnbar);
+        volumebar = findViewById(R.id.volumebar);
 
 
             if (mediaPlayer != null) {
@@ -164,6 +167,8 @@ public class PlayerActivity extends AppCompatActivity {
             mediaPlayer.setLooping(repeat);
             mediaPlayer.start();
             playIcon.setBackgroundResource(R.drawable.ic_pause);
+            //start animation
+//            startAnimation(imageView);
 
         });
 
@@ -186,34 +191,34 @@ public class PlayerActivity extends AppCompatActivity {
 
         });
 
-//        //set volume bar
-//        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-//
-//        //get max volume
-//        int maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-//
-//        //get current volume
-//        int curVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-//
-//        volumebar.setMax(maxVolume);
-//        volumebar.setProgress(curVolume);
-//        volumebar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-//            @Override
-//            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-//                //we just want to set the volume so we just put a zero there: youtube said
-//                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, progress, 0);
-//            }
-//
-//            @Override
-//            public void onStartTrackingTouch(SeekBar seekBar) {
-//
-//            }
-//
-//            @Override
-//            public void onStopTrackingTouch(SeekBar seekBar) {
-//
-//            }
-//        });
+        //set volume bar
+        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+
+        //get max volume
+        int maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+
+        //get current volume
+        int curVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+
+        volumebar.setMax(maxVolume);
+        volumebar.setProgress(curVolume);
+        volumebar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                //we just want to set the volume so we just put a zero there: youtube said
+                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, progress, 0);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
 
         //------------- song time seek bar ----------------------------
         mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -268,6 +273,15 @@ public class PlayerActivity extends AppCompatActivity {
             curTime.setText(cTime);
         }
     };
+
+//    public void startAnimation (View view){
+//        ObjectAnimator animator = ObjectAnimator.ofFloat(imageView, "rotation", 0f, 360f);
+//        //set for one sec
+//        animator.setDuration(1000);
+//        AnimatorSet animatorSet = new AnimatorSet();
+//        animatorSet.playTogether(animator);
+//        animatorSet.start();
+//    }
 
 
     private void play() {
