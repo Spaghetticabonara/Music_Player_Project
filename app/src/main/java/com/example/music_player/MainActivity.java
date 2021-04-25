@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -29,6 +30,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     ListView listView;
+    Button playing;
     String[] items;
 
     @Override
@@ -37,26 +39,38 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         listView = findViewById(R.id.listViewSong);
+        playing = findViewById(R.id.playing);
+
         runtimePermission();
     }
 
     public void runtimePermission() {
-        Dexter.withContext(this).withPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
-                .withListener(new PermissionListener() {
+        Dexter.withContext(this).withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO)
+                .withListener(new MultiplePermissionsListener() {
                     @Override
-                    public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
+                    public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
                         displaySongs();
                     }
 
                     @Override
-                    public void onPermissionDenied(PermissionDeniedResponse permissionDeniedResponse) {
-
-                    }
-
-                    @Override
-                    public void onPermissionRationaleShouldBeShown(PermissionRequest permissionRequest, PermissionToken permissionToken) {
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
                         permissionToken.continuePermissionRequest();
                     }
+
+//                    @Override
+//                    public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
+//                        displaySongs();
+//                    }
+//
+//                    @Override
+//                    public void onPermissionDenied(PermissionDeniedResponse permissionDeniedResponse) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onPermissionRationaleShouldBeShown(PermissionRequest permissionRequest, PermissionToken permissionToken) {
+//                        permissionToken.continuePermissionRequest();
+//                    }
                 }).check();
     }
 

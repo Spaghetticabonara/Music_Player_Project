@@ -21,6 +21,9 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.gauravk.audiovisualizer.visualizer.BarVisualizer;
+import com.gauravk.audiovisualizer.visualizer.BlastVisualizer;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
@@ -29,6 +32,7 @@ public class PlayerActivity extends AppCompatActivity {
 
     SeekBar mSeekBar, volumebar;
     Button playIcon, prevIcon, nextIcon, repeatIcon, shuffleIcon;
+    ImageView imageView;
     TextView songTitle;
 
     ArrayList<File> allSongs;
@@ -60,12 +64,14 @@ public class PlayerActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Now Playing");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        getSupportActionBar().setIcon(R.drawable.ic_fav);
 
         mSeekBar = findViewById(R.id.seekbar);
         songTitle = findViewById(R.id.txtsn);
         curTime = findViewById(R.id.txtsstart);
         totTime = findViewById(R.id.txtsstop);
 
+        imageView = findViewById(R.id.imageview);
         playIcon = findViewById(R.id.playbtn);
         prevIcon = findViewById(R.id.btnprev);
         nextIcon = findViewById(R.id.btnnext);
@@ -86,6 +92,8 @@ public class PlayerActivity extends AppCompatActivity {
         allSongs = (ArrayList) bundle.getParcelableArrayList("songs");
         position = bundle.getInt("position", 0);
         initPlayer(position);
+
+
 
 
     //        ------------------ play btn -----------------------------
@@ -168,7 +176,7 @@ public class PlayerActivity extends AppCompatActivity {
             mediaPlayer.start();
             playIcon.setBackgroundResource(R.drawable.ic_pause);
             //start animation
-//            startAnimation(imageView);
+            startAnimation(imageView);
 
         });
 
@@ -190,6 +198,7 @@ public class PlayerActivity extends AppCompatActivity {
             //playIcon.setImageResource(R.drawable.ic_play_arrow_black_24dp);
 
         });
+
 
         //set volume bar
         audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
@@ -274,14 +283,14 @@ public class PlayerActivity extends AppCompatActivity {
         }
     };
 
-//    public void startAnimation (View view){
-//        ObjectAnimator animator = ObjectAnimator.ofFloat(imageView, "rotation", 0f, 360f);
-//        //set for one sec
-//        animator.setDuration(1000);
-//        AnimatorSet animatorSet = new AnimatorSet();
-//        animatorSet.playTogether(animator);
-//        animatorSet.start();
-//    }
+    public void startAnimation (View view){
+        ObjectAnimator animator = ObjectAnimator.ofFloat(imageView, "rotation", 0f, 360f);
+        //set for one sec
+        animator.setDuration(1000);
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.playTogether(animator);
+        animatorSet.start();
+    }
 
 
     private void play() {
