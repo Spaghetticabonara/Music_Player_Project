@@ -30,7 +30,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     ListView listView;
-    Button playing;
     String[] items;
 
     @Override
@@ -39,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         listView = findViewById(R.id.listViewSong);
-        playing = findViewById(R.id.playing);
 
         runtimePermission();
     }

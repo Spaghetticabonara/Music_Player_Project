@@ -17,12 +17,4 @@
 
     </ListView>
 
-    <Button
-        android:id="@+id/playing"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:text="playing"
-        />
-
 </RelativeLayout>
