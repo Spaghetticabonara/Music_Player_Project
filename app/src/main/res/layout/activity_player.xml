@@ -11,7 +11,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
         android:layout_weight="7"
         android:gravity="center"
         android:orientation="vertical">
@@ -146,27 +146,58 @@
             </androidx.appcompat.widget.AppCompatButton>
 
             <SeekBar
-                android:id="@+id/soundbar"
-                android:layout_centerInParent="true"
-                android:layout_alignParentBottom="true"
-                android:layout_margin="20dp"
-                android:layout_marginBottom="40dp"
+                android:id="@+id/volumebar"
                 android:layout_width="250dp"
-                android:layout_height="wrap_content">
+                android:layout_height="20dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="80dp"
+                android:layout_marginBottom="186dp">
+
 
             </SeekBar>
 
+            <ImageView
+                android:id="@+id/mute"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="76dp"
+                android:layout_marginEnd="350dp"
+                android:layout_marginBottom="166dp"
+                android:contentDescription="todo"
+                android:src="@drawable/ic_mute"></ImageView>
+
+            <ImageView
+                android:id="@+id/volume"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="348dp"
+                android:layout_marginTop="77dp"
+                android:layout_marginBottom="165dp"
+                android:contentDescription="todo"
+                android:src="@drawable/ic_volume"></ImageView>
+
             <com.gauravk.audiovisualizer.visualizer.BlastVisualizer
-                xmlns:custom="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/blast"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:layout_alignParentBottom="true"
-                custom:avDensity="0.5"
-                custom:avType="outline"
-                custom:avWidth="4dp"
-                custom:avColor="#BA9FFC"
-                custom:avSpeed="normal"/>
+                android:layout_marginBottom="5dp"
+                app:avColor="#835e77"
+                app:avDensity="0.5"
+                app:avSpeed="normal"
+                app:avType="outline"
+                app:avWidth="4dp" />
 
         </RelativeLayout>
 
