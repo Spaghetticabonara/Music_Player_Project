@@ -40,22 +40,23 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {onBackPressed();}
+        return(super.onOptionsItemSelected(item));
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getSupportActionBar().setTitle("Now Playing");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         listView = findViewById(R.id.listViewSong);
 
         runtimePermission();
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item) { switch(item.getItemId()) {
-        case R.id.like:
-            //add the function to perform here
-            return(true);
-    }
-        return(super.onOptionsItemSelected(item));
     }
 
     public void runtimePermission() {
