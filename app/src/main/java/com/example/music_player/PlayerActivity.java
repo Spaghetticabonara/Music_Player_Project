@@ -48,6 +48,7 @@ public class PlayerActivity extends AppCompatActivity {
 
     boolean repeat = false;
     boolean shuffle = false;
+    boolean fav = false;
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -176,6 +177,7 @@ public class PlayerActivity extends AppCompatActivity {
             mediaPlayer.setLooping(repeat);
             mediaPlayer.start();
             playIcon.setBackgroundResource(R.drawable.ic_pause);
+
             //start animation
             startAnimation(imageView);
 

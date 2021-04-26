@@ -16,35 +16,47 @@
         android:gravity="center"
         android:orientation="vertical">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/txtsn"
+            <ImageView
+                android:id="@+id/imageview"
+                android:layout_marginTop="10dp"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_centerVertical="true"
+                android:layout_centerInParent="true"
+                android:src="@drawable/music_ic"
+                android:contentDescription="todo">
+            </ImageView>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:ellipsize="marquee"
-            android:fontFamily="@font/oswald_light"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:padding="10dp"
-            android:singleLine="true"
-            android:text="song_name"
-            android:textAlignment="center"
-            android:textColor="#FFF"
-            android:textSize="22sp"
-            android:textStyle="italic">
+            >
+            <TextView
+                android:id="@+id/txtsn"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:ellipsize="marquee"
+                android:fontFamily="@font/oswald_light"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:layout_centerInParent="true"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:text="song_name"
+                android:textAlignment="center"
+                android:textColor="#FFF"
+                android:textSize="22sp"
+                android:textStyle="italic"
+                />
 
-        </TextView>
-
-
-        <ImageView
-            android:id="@+id/imageview"
-            android:layout_marginBottom="8dp"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            android:src="@drawable/music_ic"
-            android:contentDescription="todo">
-        </ImageView>
-
+        </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="60dp">
@@ -88,6 +100,7 @@
 
             </TextView>
         </RelativeLayout>
+
     </LinearLayout>
 
     <LinearLayout
